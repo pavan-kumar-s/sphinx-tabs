@@ -10,10 +10,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/github-script@v4
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const contributors = github.rest.repos.listContributors({
-              owner: pavan-kumar-s,
-              repo: sphinx-tabs
+              owner: context.repo.owner,
+              repo: context.repo.repo
             });
             // Process contributor data and download images
       - name: Store output
