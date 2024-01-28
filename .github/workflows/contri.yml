@@ -12,8 +12,8 @@ jobs:
         with:
           script: |
             const contributors = github.rest.repos.listContributors({
-              owner: context.repo.owner,
-              repo: context.repo.repo
+              owner: pavan-kumar-s,
+              repo: sphinx-tabs
             });
             // Process contributor data and download images
       - name: Store output
