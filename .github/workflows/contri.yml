@@ -2,23 +2,13 @@ name: Get Contributors with Images
 
 on: 
   workflow_dispatch:
-
+  
 jobs:
-  get-contributors:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const contributors = github.rest.repos.listContributors({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-            // Process contributor data and download images
-      - name: Store output
-        uses: actions/upload-artifact@v3
-        with:
-          name: contributors-images
-          path: contributors-images
+    contrib-readme-job:
+        runs-on: ubuntu-latest
+        name: A job to automate contrib in readme
+        steps:
+            - name: Contribute List
+              uses: akhilmhdh/contributors-readme-action@v2.3.6
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
